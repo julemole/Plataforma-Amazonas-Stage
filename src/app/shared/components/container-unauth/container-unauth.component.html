@@ -1,0 +1,10 @@
+<app-header-unauth/>
+<main>
+  <section class="rsp-sect">
+    <article [ngClass]="isRegister ? 'container-register' : 'container'">
+      <ng-content></ng-content>
+    </article>
+  </section>
+</main>
+<footer class="fixed-bottom p-3 fim-fondo-gris"></footer>
+

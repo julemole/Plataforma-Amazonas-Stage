@@ -1,0 +1,46 @@
+<app-container-unauth>
+  <div class="form-container sign-in-container">
+    <form [formGroup]="signInForm" class="row">
+      <h1 class="fim-txt-l">Iniciar Sesión</h1>
+      <span class="msg-box">Ingresa tus credenciales</span>
+      <div class="mb-3 text-start">
+        <label for="user">Nombre de usuario <span class="text-danger"> *</span></label>
+        <input formControlName="user" id="user" type="text" placeholder="Escribe tu nombre de usuario">
+        <!-- Validators user -->
+        <span class="text-danger">{{ getErrorMessage(user, '3') }}</span>
+      </div>
+      <div class="mb-3 text-start">
+        <label for="pass">Contraseña <span class="text-danger"> *</span></label>
+        <div class="input-group">
+          <input formControlName="pass" id="pass" [type]="typeInput" placeholder="Escribe tu contraseña" autocomplete="on">
+          <div class="input-group-append">
+            <button (click)="showPass()" class="btn btn-outline-secondary rounded-start-0" type="button">
+              <i *ngIf="isPassword" class="fa fa-eye-slash"></i>
+              <i *ngIf="!isPassword" class="fa fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Validators pass -->
+        <span class="text-danger">{{ getErrorMessage(pass, '3') }}</span>
+      </div>
+      <div class="links">
+        <a routerLink="/user/forgot-password" class="fim-txt-xxxs text-danger">¿Olvidaste tu contraseña?</a>
+        <a routerLink="/suppliers-initial-register" class="fim-txt-xxxs text-danger sup-register">Registrate como un proveedor</a>
+      </div>
+      <button (click)="singIn()" [disabled]="signInForm.pristine" type="submit" class="btn btn-primary px-5 mx-auto w-50">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Ingresar
+      </button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-right">
+        <i class="bi bi-info-circle"></i>
+        <h1 class="fim-txt-l">¿Aún no estás registrado?</h1>
+        <p>¡Haz clic para conectar con nosotros!</p>
+        <button class="btn btn-light" routerLink="/suppliers-initial-register">Registrarse</button>
+      </div>
+    </div>
+  </div>
+</app-container-unauth>
